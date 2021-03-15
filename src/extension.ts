@@ -91,7 +91,7 @@ export function activate(context: vscode.ExtensionContext) {
                     console.log(odooBinPath);
                     console.log(module_name);
                     console.log(fullPath);
-                    console.log(pythonPath)
+                    console.log(pythonPath);
 
                     process = spawn(pythonPath, [odooBinPath, 'scaffold', module_name, fullPath]);
 
@@ -104,12 +104,12 @@ export function activate(context: vscode.ExtensionContext) {
 
                 process.stdout.on('data', (data: string) => {
                     console.log(`stdout: ${data}`);
-                    vscode.window.showInformationMessage('Something went wrong! Please report on GitHub');
+                    vscode.window.showInformationMessage('Something went wrong with STDOUT');
                 });
 
                 process.stderr.on('data', (data: string) => {
                     console.log(`stderr: ${data}`);
-                    vscode.window.showInformationMessage('Something went wrong! Please report on GitHub');
+                    vscode.window.showInformationMessage('Something went wrong with STDERR');
                 });
 
                 process.on('close', (code: string) => {
