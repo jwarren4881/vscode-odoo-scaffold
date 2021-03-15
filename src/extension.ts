@@ -7,7 +7,7 @@ import * as vscode from 'vscode';
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-    let disposable = vscode.commands.registerCommand('extension.odooScaffold', (fileObj) => {
+    let disposable = vscode.commands.registerCommand('extension.odooScaffold', (fileObj: { path: any; }) => {
 
         // Get project path
         const activeWorkspace = vscode.workspace.workspaceFolders;
@@ -47,13 +47,13 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.showInputBox({
             value: relativePath || '',
             prompt: 'Enter path of new Odoo module (/path/subpath/to/module)',
-            validateInput: (value) => {
+            validateInput: (value: any) => {
                 if (value) {
                     return null;
                 }
                 return 'Please enter a valid path';
             }
-        }).then((fullPath) => {
+        }).then((fullPath: undefined) => {
 
             if (fullPath === undefined) {
                 vscode.window.showInformationMessage('Invalid path!');
@@ -63,13 +63,13 @@ export function activate(context: vscode.ExtensionContext) {
             // User Input to path od new module
             vscode.window.showInputBox({
                 prompt: 'Enter name of new Odoo module',
-                validateInput: (value) => {
+                validateInput: (value: any) => {
                     if (value) {
                         return null;
                     }
                     return 'Please enter a valid name to module';
                 }
-            }).then((module_name) => {
+            }).then((module_name: undefined) => {
 
                 if (module_name === undefined) {
                     vscode.window.showInformationMessage('Invalid module name!');
